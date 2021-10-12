@@ -1,0 +1,65 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  margin:0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #404C51;
+
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  text-decoration: underline;
+}
+
+a.p-button:hover,
+a.p-button:focus {
+  text-decoration: none;
+}
+
+label {
+  font-weight: bold;
+}
+
+input {
+  height: 30px;
+}
+
+.ajusteIcone{
+  height: 30px;
+  color: black!important;
+  background-color:#e6b800!important;
+  border-color: black!important;
+}
+
+th{
+  font-weight: bold!important;
+}
+
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+    margin: 0 auto;
+  }
+}
+
+.col-valor-header {
+  width: 120px;
+}
+
+.col-valor {
+  text-align: right;
+  font-weight: bold!important;
+}
+
+.col-data-header {
+  width: 120px;
+}
+
+.col-data-content {
+  text-align: center;
+}

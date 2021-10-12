@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="p-grid">
+
+    <form autocomplete="off" (ngSubmit)="pesquisar()">
+
+      <div class="p-grid">
+
+      <div class="p-col-12">
+        <h1>Lançamentos</h1>
+      </div>
+
+      <div class="p-col-12 p-fluid">
+        <label>Descrição</label>
+        <input pInputText type="text" name="descricao"
+          [(ngModel)]="filtro.descricao">
+      </div>
+      <!----
+      <div class="p-col-12">
+      <label style="display: block">Vencimento</label>
+      <input pInputText type="text" style="width: 95px">
+
+      <label style="margin: 0.5em">até</label>
+      <input pInputText type="text" style="width: 95px">
+    </div>
+  -->
+    <div class="p-col-12">
+      <button class="p-button-warning" pButton type="submit" label="Pesquisar"  style ="height:30px"></button>
+    </div>
+     </div>
+  </form>
+  </div>
+
+  <div class="p-grid">
+    <div class="p-col-12">
+      <p-table [value]="lancamentos" [responsive]="true"
+          [paginator]="true" [rows]="filtro.itensPorPagina"
+          [lazy]="true" [totalRecords]="totalRegistros"
+          (onLazyLoad)="aoMudarPagina($event)"
+          #tabela>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="6">
+              Nenhum lançamento encontrado
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Descrição</th>
+            <th class="col-data-header">Vencimento</th>
+            <th class="col-data-header">Pagamento</th>
+            <th class="col-valor-header">Valor</th>
+            <th class="col-acoes-header"></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-lancamento>
+          <tr>
+            <td>{{ lancamento.descricao }}</td>
+            <td class="col-data">{{ lancamento.dataVencimento | date:'dd/MM/y' }}</td>
+            <td class="col-data">{{ lancamento.dataPagamento | date:'dd/MM/y'}}</td>
+            <td class="col-valor"[style.color]="lancamento.tipo === 'DESPESA' ? 'red' : 'blue'">{{ lancamento.valor | currency:'BRL':true}}</td>
+            <td class="col-acoes">
+              <a class="ajusteIcone" pButton icon="pi pi-pencil" pTooltip="Alterar" tooltipPosition="top" style="margin: 0.3em"
+              [routerLink]="['/lancamentos', lancamento.codigo]"></a>
+              <button class="ajusteIcone" pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top" style="margin: 0.3em"
+              (click)="confirmarExclusao(lancamento)"></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    <div class="p-col-12">
+       <a class="p-button-warning" pButton label="Novo Lançamento" style="height: 33px" routerLink="/lancamentos/novo" ></a>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
